@@ -11,15 +11,12 @@ import {
   Text,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import TransactionList from './app/components/TransactionList';
 
-export default class finantrack_mobile_client extends Component {
-  render() {
-    return (
-      <TransactionList />
-    )
-  }
-}
+const App = StackNavigator({
+  Home: { screen: TransactionList }
+});
 
-AppRegistry.registerComponent('finantrack_mobile_client', () => finantrack_mobile_client);
+AppRegistry.registerComponent('finantrack_mobile_client', () => App);

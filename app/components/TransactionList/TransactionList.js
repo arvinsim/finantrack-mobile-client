@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    ListView
+    ListView,
+    TextInput,
 } from 'react-native';
 
+import styles from './styles.js'
+
 class TransactionList extends Component {
+    static navigationOptions = {
+        title: 'Finantrack',
+    };
+
     _renderRow() {
         return (
-            <View>
+            <View style={styles.row}>
                 <View>
                     <Text>Title</Text>
                 </View>
@@ -35,17 +42,24 @@ class TransactionList extends Component {
         const dataSource = ds.cloneWithRows(this.props.stories);
 
         return (
-            <ListView 
-                dataSource={dataSource}
-                enableEmptySections={true}
-                renderRow={this._renderRow.bind(this)}
-            />
+            <View>
+                <View style={styles.row}>
+                    <TextInput 
+                        placeholder="Search..."
+                    />
+                </View>
+                <ListView 
+                    dataSource={dataSource}
+                    enableEmptySections={true}
+                    renderRow={this._renderRow.bind(this)}
+                />
+            </View>
         )
     }
 }
 
 TransactionList.defaultProps = {
-    stories: [1,2,3,4,5]
+    stories: [1,2,3,4,5,6,7,8,9,10]
 }
 
 export default TransactionList;
