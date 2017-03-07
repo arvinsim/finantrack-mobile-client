@@ -3,8 +3,12 @@ import {
     View,
     Text,
     ListView,
-    TextInput,
 } from 'react-native';
+import { 
+    List,
+    ListItem,
+    SearchBar, 
+} from 'react-native-elements';
 
 import styles from './styles.js'
 
@@ -13,53 +17,51 @@ class TransactionList extends Component {
         title: 'Finantrack',
     };
 
-    _renderRow() {
-        return (
-            <View style={styles.row}>
-                <View>
-                    <Text>Title</Text>
-                </View>
-                <View>
-                    <Text>Description</Text>
-                </View>
-                <View>
-                    <Text>Category</Text>
-                </View>
-                <View>
-                    <Text>Outflow</Text>
-                </View>
-                <View>
-                    <Text>Inflow</Text>
-                </View>
-            </View>
-        )
-    }
-
     render() {
-        // Boilerplate for adding data to the vie 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        // Data is gotten from `stories` props
-        const dataSource = ds.cloneWithRows(this.props.stories);
+        const transactions = this.props.transactions;
 
         return (
             <View>
-                <View style={styles.row}>
-                    <TextInput 
-                        placeholder="Search..."
-                    />
+                <View>
+                    <SearchBar placeholder='Search Transactions...' />
                 </View>
-                <ListView 
-                    dataSource={dataSource}
-                    enableEmptySections={true}
-                    renderRow={this._renderRow.bind(this)}
-                />
+                <View>
+                    <List>
+                    {
+                        transactions.map((item, i) => (
+                            <ListItem
+                                key={i}
+                                title={item.title} 
+                                subtitle={
+                                    <Text>{item.description}</Text>
+                                }
+                            />
+                        ))
+                    }
+                    </List>
+                </View>
             </View>
         )
     }
 }
 
 TransactionList.defaultProps = {
-    stories: [1,2,3,4,5,6,7,8,9,10]
+    transactions: [
+        {
+            title: 'Groceries',
+            description: 'Eggs, Milk, Cream, Vegetables',
+            category: 'Health and Fitness',
+            outflow: '300php',
+            inflow: '0php',
+        },
+        {
+            title: 'Salary',
+            description: 'Foobar Inc.',
+            category: 'Money and Finances',
+            outflow: '0php',
+            inflow: '80000php',
+        }
+    ]
 }
 
 export default TransactionList;
