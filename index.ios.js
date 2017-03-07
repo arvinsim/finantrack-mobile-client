@@ -15,6 +15,8 @@ import { StackNavigator } from 'react-navigation';
 
 import TransactionList from './app/components/TransactionList';
 
+const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
+
 const App = StackNavigator({
   Home: { screen: TransactionList }
 });
