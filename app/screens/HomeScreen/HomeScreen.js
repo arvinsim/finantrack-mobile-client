@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import TransactionList from '../../components/TransactionList';
 
 class HomeScreen extends Component {
     static navigationOptions = {
@@ -15,9 +16,7 @@ class HomeScreen extends Component {
                 <Button 
                     onPress={() => navigate('AddTransaction')}
                     title="Go to Add Transaction Screen" />
-                <Button
-                    onPress={() => navigate('UpdateTransaction')}
-                    title="Go to Update Transaction Screen" />
+                <TransactionList onPress={() => navigate('UpdateTransaction')} />
             </View>
         );
     }

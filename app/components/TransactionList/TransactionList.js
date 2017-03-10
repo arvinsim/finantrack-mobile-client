@@ -15,6 +15,7 @@ import styles from './styles.js'
 class TransactionList extends Component {
     render() {
         const transactions = this.props.transactions;
+        const onPress = this.props.onPress;
 
         return (
             <View>
@@ -31,6 +32,7 @@ class TransactionList extends Component {
                                 subtitle={
                                     <Text>{item.description}</Text>
                                 }
+                                onPress={onPress}
                             />
                         ))
                     }
