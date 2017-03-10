@@ -13,10 +13,6 @@ import {
 import styles from './styles.js'
 
 class TransactionList extends Component {
-    static navigationOptions = {
-        title: 'Finantrack',
-    };
-
     render() {
         const transactions = this.props.transactions;
 

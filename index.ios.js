@@ -13,12 +13,12 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import TransactionList from './app/components/TransactionList';
+import HomeScreen from './app/screens/HomeScreen';
 
 const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
 
 const App = StackNavigator({
-  Home: { screen: TransactionList }
+  Home: { screen: HomeScreen },
 });
 
 AppRegistry.registerComponent('finantrack_mobile_client', () => App);
