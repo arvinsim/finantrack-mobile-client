@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import TransactionList from '../../components/TransactionList';
 
 class HomeScreen extends Component {
@@ -12,10 +13,10 @@ class HomeScreen extends Component {
 
         return (
             <View>
-                <Text>This is the Home Screen</Text>
                 <Button 
                     onPress={() => navigate('AddTransaction')}
-                    title="Go to Add Transaction Screen" />
+                    title="Add New Transaction" 
+                    backgroundColor="#3748AC" />
                 <TransactionList onPress={() => navigate('UpdateTransaction')} />
             </View>
         );
