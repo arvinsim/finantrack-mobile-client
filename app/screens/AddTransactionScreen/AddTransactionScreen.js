@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class HomeScreen extends Component {
+class AddTransactionScreen extends Component {
     static navigationOptions = {
-        title: 'Finantrack',
+        title: 'Finantrack - Add Transaction',
     };
 
     render() {
         return (
             <View>
-                <Text>This is the Home Screen</Text>
+                <Text>This is the Add Transaction Screen</Text>
             </View>
         );
     }
 }
 
-export default HomeScreen;
+export default AddTransactionScreen;
