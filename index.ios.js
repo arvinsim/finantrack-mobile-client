@@ -12,10 +12,23 @@ import {
   View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import Config from 'react-native-config';
 
 // TODO: Load mock data
-const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
+//const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
 
+// Firebase code
+import * as firebase from "firebase";
+
+firebase.initializeApp({
+    apiKey: Config.FIREBASE_API_KEY,
+    authDomain: Config.FIREBASE_AUTH_DOMAIN,
+    databaseURL: Config.FIREBASE_DATABASE_URL,
+    storageBucket: Config.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
+});
+
+// Screens
 import HomeScreen from './app/screens/HomeScreen';
 import AddTransactionScreen from './app/screens/AddTransactionScreen';
 import UpdateTransactionScreen from './app/screens/UpdateTransactionScreen';
