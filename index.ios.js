@@ -18,7 +18,8 @@ import Config from 'react-native-config';
 //const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
 
 // Firebase code
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
+import { firebaseLogin } from './app/lib/firebase';
 
 firebase.initializeApp({
     apiKey: Config.FIREBASE_API_KEY,
