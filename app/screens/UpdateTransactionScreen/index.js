@@ -1,3 +1,3 @@
-import UpdateTransactionScreen from './UpdateTransactionScreen';
+import UpdateTransactionScreen from './UpdateTransactionScreen'
 
-export default UpdateTransactionScreen;
+export default UpdateTransactionScreen

@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     row: {
         flex: 1,
         flexDirection: 'row'
     }
-});
+})
 
-export default styles;
+export default styles

@@ -1,3 +1,3 @@
-import AddTransactionScreen from './AddTransactionScreen';
+import AddTransactionScreen from './AddTransactionScreen'
 
-export default AddTransactionScreen;
+export default AddTransactionScreen

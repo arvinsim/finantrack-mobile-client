@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     View,
     Text,
     ListView,
-} from 'react-native';
+} from 'react-native'
 import { 
     List,
     ListItem,
     SearchBar, 
-} from 'react-native-elements';
+} from 'react-native-elements'
 
 import styles from './styles.js'
 
@@ -62,4 +62,4 @@ TransactionList.defaultProps = {
     ]
 }
 
-export default TransactionList;
+export default TransactionList

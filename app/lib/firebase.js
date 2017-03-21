@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase'
 
 export async function firebaseSignup(email, pass) {
     try {
