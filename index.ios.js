@@ -34,8 +34,7 @@ import HomeScreen from './app/screens/HomeScreen';
 import AddTransactionScreen from './app/screens/AddTransactionScreen';
 import UpdateTransactionScreen from './app/screens/UpdateTransactionScreen';
 
-
-const App = StackNavigator({
+export const App = StackNavigator({
   Home: { screen: HomeScreen },
   AddTransaction: { screen: AddTransactionScreen },
   UpdateTransaction: { screen: UpdateTransactionScreen },
