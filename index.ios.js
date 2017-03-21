@@ -1,43 +1,35 @@
 /**
- * Sample React Native App
+ * Finantrack Mobile App
  * https://github.com/facebook/react-native
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import Config from 'react-native-config';
+import { StackNavigator } from 'react-navigation'
 
-// TODO: Load mock data
-//const mockTransactionData = require('./MOCK_TRANSACTION_DATA.json');
+// Config
+import Config from 'react-native-config'
 
-// Firebase code
-import * as firebase from 'firebase';
-import { firebaseLogin } from './app/lib/firebase';
-
-firebase.initializeApp({
-    apiKey: Config.FIREBASE_API_KEY,
-    authDomain: Config.FIREBASE_AUTH_DOMAIN,
-    databaseURL: Config.FIREBASE_DATABASE_URL,
-    storageBucket: Config.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
-});
+// Firebase
+// import { firebaseInitialize, firebaseLogin } from './app/lib/firebase'
+// firebaseApp = firebaseInitialize()
+// firebaseLogin(Config.FIREBASE_ACCOUNT_TEST_EMAIL, Config.FIREBASE_ACCOUNT_TEST_PASSWORD)
 
 // Screens
-import HomeScreen from './app/screens/HomeScreen';
-import AddTransactionScreen from './app/screens/AddTransactionScreen';
-import UpdateTransactionScreen from './app/screens/UpdateTransactionScreen';
+import HomeScreen from './app/screens/HomeScreen'
+import AddTransactionScreen from './app/screens/AddTransactionScreen'
+import UpdateTransactionScreen from './app/screens/UpdateTransactionScreen'
 
 export const App = StackNavigator({
   Home: { screen: HomeScreen },
   AddTransaction: { screen: AddTransactionScreen },
-  UpdateTransaction: { screen: UpdateTransactionScreen },
-});
+  UpdateTransaction: { screen: UpdateTransactionScreen }
+})
 
-AppRegistry.registerComponent('finantrack_mobile_client', () => App);
+AppRegistry.registerComponent('finantrack_mobile_client', () => App)

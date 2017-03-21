@@ -14,8 +14,7 @@ import styles from './styles.js'
 
 class TransactionList extends Component {
     render() {
-        const transactions = this.props.transactions;
-        const onPress = this.props.onPress;
+        const { transactions, onPress } = this.props
 
         return (
             <View>
@@ -43,23 +42,8 @@ class TransactionList extends Component {
     }
 }
 
-TransactionList.defaultProps = {
-    transactions: [
-        {
-            title: 'Groceries',
-            description: 'Eggs, Milk, Cream, Vegetables',
-            category: 'Health and Fitness',
-            outflow: '300php',
-            inflow: '0php',
-        },
-        {
-            title: 'Salary',
-            description: 'Foobar Inc.',
-            category: 'Money and Finances',
-            outflow: '0php',
-            inflow: '80000php',
-        }
-    ]
+TransactionList.propTypes = {
+    transactions: React.PropTypes.array
 }
 
 export default TransactionList
