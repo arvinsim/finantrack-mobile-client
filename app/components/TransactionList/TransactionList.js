@@ -1,3 +1,5 @@
+import styles from './styles.js'
+
 import React, { Component } from 'react'
 import {
     View,
@@ -9,8 +11,8 @@ import {
     ListItem,
     SearchBar, 
 } from 'react-native-elements'
+import TransactionListItem from '../TransactionListItem'
 
-import styles from './styles.js'
 
 class TransactionList extends Component {
     render() {
@@ -25,7 +27,7 @@ class TransactionList extends Component {
                     <List>
                     {
                         transactions.map((item, i) => (
-                            <ListItem
+                            <TransactionListItem
                                 key={i}
                                 title={item.title} 
                                 subtitle={
@@ -43,7 +45,13 @@ class TransactionList extends Component {
 }
 
 TransactionList.propTypes = {
-    transactions: React.PropTypes.array
+    transaction: React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+            title: React.PropTypes.string.isRequired,
+            description: React.PropTypes.string,
+            onPress: React.PropTypes.func.isRequired
+        })
+    )
 }
 
 export default TransactionList
