@@ -45,13 +45,13 @@ class TransactionList extends Component {
 }
 
 TransactionList.propTypes = {
-    transaction: React.PropTypes.arrayOf(
+    transactions: React.PropTypes.arrayOf(
         React.PropTypes.shape({
             title: React.PropTypes.string.isRequired,
-            description: React.PropTypes.string,
-            onPress: React.PropTypes.func.isRequired
+            description: React.PropTypes.string
         })
-    )
+    ),
+    onPress: React.PropTypes.func.isRequired
 }
 
 export default TransactionList

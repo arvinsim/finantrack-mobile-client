@@ -5,6 +5,8 @@ import { Button } from 'react-native-elements'
 
 import TransactionList from '../../components/TransactionList'
 
+import { loadTransactions } from '../../store/reducers'
+
 // TODO: For testing purposes
 // import Config from 'react-native-config'
 // import { firebaseInitialize, firebaseLogin } from '../../lib/firebase'
@@ -48,26 +50,13 @@ class HomeScreen extends Component {
     }
     */
 
-    render() {
-        const { navigate } = this.props.navigation
-        // TODO: Example Data
-        const transactions = [
-            {
-                title: 'Groceries',
-                description: 'Eggs, Milk, Cream, Vegetables',
-                category: 'Health and Fitness',
-                outflow: '300php',
-                inflow: '0php',
-            },
-            {
-                title: 'Salary',
-                description: 'Foobar Inc.',
-                category: 'Money and Finances',
-                outflow: '0php',
-                inflow: '80000php',
-            }
-        ]
+    componentDidMount() {
+        this.props.handleComponentDidMount()
+    }
 
+
+    render() {
+        const { transactions, navigation: { navigate } } = this.props
         return (
             <View>
                 <Button 
@@ -83,15 +72,15 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+      transactions: state.app.transactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // onTodoClick: (id) => {
-    //   dispatch(toggleTodo(id))
-    // }
+    handleComponentDidMount: () => {
+        return dispatch(loadTransactions()) 
+    } 
   }
 }
 
