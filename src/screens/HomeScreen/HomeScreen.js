@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
+
 import TransactionList from '../../components/TransactionList'
 
 // TODO: For testing purposes
@@ -79,4 +81,21 @@ class HomeScreen extends Component {
     }
 }
 
-export default HomeScreen
+const mapStateToProps = (state) => {
+  return {
+    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // onTodoClick: (id) => {
+    //   dispatch(toggleTodo(id))
+    // }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen)
