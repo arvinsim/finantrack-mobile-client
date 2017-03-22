@@ -25,19 +25,22 @@ class HomeScreen extends Component {
             console.group('SNAP')
             console.log(snap)
             console.groupEnd()
-            // // get children as an array
-            // var items = [];
-            // snap.forEach((child) => {
-            //     items.push({
-            //     title: child.val().title,
-            //     _key: child.key
-            //     });
-            // });
 
-            // TODO: Dispatch
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRows(items)
-            // });
+            let transactions = []
+            snap.forEach((transaction) => {
+                const { title, category, description, inflow, outflow } = transaction.val()
+
+                transactions.push({
+                    title: title,
+                    category: category,
+                    description: description,
+                    inflow: inflow,
+                    outflow: outflow,
+                    _key: transaction.key
+                })
+            })
+
+            this.props.loadTransactionsFromFirebase(transactions)
         }, (error) => {
             console.log("Error: " + error.code);
         });
@@ -67,6 +70,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      loadTransactionsFromFirebase: (transactions) => {
+          dispatch(loadTransactions(transactions))
+      } 
   }
 }
 

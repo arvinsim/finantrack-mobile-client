@@ -25,8 +25,6 @@ const AppNavigator = StackNavigator({
   UpdateTransaction: { screen: UpdateTransactionScreen }
 })
 
-const screenProps = { firebaseApp: firebaseApp }
-
 class App extends Component {
   render() {
     return (
