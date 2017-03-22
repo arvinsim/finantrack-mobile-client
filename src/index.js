@@ -14,11 +14,6 @@ import Config from 'react-native-config'
 // Store
 import store from './store'
 
-// Firebase
-// import { firebaseInitialize, firebaseLogin } from './app/lib/firebase'
-// firebaseApp = firebaseInitialize()
-// firebaseLogin(Config.FIREBASE_ACCOUNT_TEST_EMAIL, Config.FIREBASE_ACCOUNT_TEST_PASSWORD)
-
 // Screens
 import HomeScreen from './screens/HomeScreen'
 import AddTransactionScreen from './screens/AddTransactionScreen'
@@ -29,6 +24,8 @@ const AppNavigator = StackNavigator({
   AddTransaction: { screen: AddTransactionScreen },
   UpdateTransaction: { screen: UpdateTransactionScreen }
 })
+
+const screenProps = { firebaseApp: firebaseApp }
 
 class App extends Component {
   render() {

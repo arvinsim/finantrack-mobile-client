@@ -25,7 +25,6 @@ export async function firebaseLogin(email, pass) {
 }
 
 export async function firebaseLogout() {
-
     try {
         await firebase.auth().signOut();
         // Navigate to login view
@@ -35,12 +34,13 @@ export async function firebaseLogout() {
 }
 
 export const firebaseInitialize = () => {
-    console.log(Config.FIREBASE_DATABASE_URL)
-    return firebase.initializeApp({
-        apiKey: Config.FIREBASE_API_KEY,
-        authDomain: Config.FIREBASE_AUTH_DOMAIN,
-        databaseURL: Config.FIREBASE_DATABASE_URL,
-        storageBucket: Config.FIREBASE_STORAGE_BUCKET,
-        messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
-    });
+    if(!firebase.apps.length) {
+        return firebase.initializeApp({
+            apiKey: Config.FIREBASE_API_KEY,
+            authDomain: Config.FIREBASE_AUTH_DOMAIN,
+            databaseURL: Config.FIREBASE_DATABASE_URL,
+            storageBucket: Config.FIREBASE_STORAGE_BUCKET,
+            messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
+        });
+    }
 }

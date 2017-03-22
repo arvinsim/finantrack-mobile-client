@@ -2,61 +2,50 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
+import * as firebase from 'firebase'
 
+import { firebaseInitialize, firebaseLogin } from '../../lib/firebase'
 import TransactionList from '../../components/TransactionList'
-
-import { loadTransactions } from '../../store/reducers'
-
-// TODO: For testing purposes
-// import Config from 'react-native-config'
-// import { firebaseInitialize, firebaseLogin } from '../../lib/firebase'
-// firebaseApp = firebaseInitialize()
-// firebaseLogin(Config.FIREBASE_ACCOUNT_TEST_EMAIL, Config.FIREBASE_ACCOUNT_TEST_PASSWORD)
+import { loadTransactions } from '../../store/data'
 
 class HomeScreen extends Component {
     static navigationOptions = {
         title: 'Finantrack'
     }
 
-    /*
-    constructor(props) {
-        super(props);
-        this.itemsRef = this.getRef().child('items');
-    }
-
-    getRef() {
-        return firebaseApp.database().ref();
-    }
-
     componentDidMount() {
-        this.listenForItems(this.itemsRef);
+        // Firebase
+        firebaseInitialize()
+        const transactionsRef = firebase.app().database().ref('transactions')
+        this.listenForItems(transactionsRef)
     }
 
-    listenForItems(itemsRef) {
-        itemsRef.on('value', (snap) => {
-            // get children as an array
-            var items = [];
-            snap.forEach((child) => {
-                items.push({
-                title: child.val().title,
-                _key: child.key
-                });
-            });
+    listenForItems(transactionsRef) {
+        transactionsRef.on('value', (snap) => {
+            console.group('SNAP')
+            console.log(snap)
+            console.groupEnd()
+            // // get children as an array
+            // var items = [];
+            // snap.forEach((child) => {
+            //     items.push({
+            //     title: child.val().title,
+            //     _key: child.key
+            //     });
+            // });
 
-            this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(items)
-            });
+            // TODO: Dispatch
+            // this.setState({
+            //     dataSource: this.state.dataSource.cloneWithRows(items)
+            // });
+        }, (error) => {
+            console.log("Error: " + error.code);
         });
     }
-    */
-
-    componentDidMount() {
-        this.props.handleComponentDidMount()
-    }
-
 
     render() {
         const { transactions, navigation: { navigate } } = this.props
+
         return (
             <View>
                 <Button 
@@ -72,15 +61,12 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      transactions: state.app.transactions
+      transactions: state.data.transactions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleComponentDidMount: () => {
-        return dispatch(loadTransactions()) 
-    } 
   }
 }
 

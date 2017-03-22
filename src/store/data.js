@@ -22,7 +22,7 @@ const initialState = {
   transactions: []
 }
 
-function appReducer(state = initialState, action) {
+function dataReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_TRANSACTIONS:
       return Object.assign({}, state, {
@@ -33,4 +33,4 @@ function appReducer(state = initialState, action) {
   }
 }
 
-export default appReducer
+export default dataReducer
