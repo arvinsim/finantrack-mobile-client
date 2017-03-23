@@ -1,3 +1,6 @@
+import * as firebase from 'firebase'
+import { firebaseInitialize } from '../lib/firebase'
+
 // Constants
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION'
 export const UPDATE_TRANSACTION = 'UPDATE_TRANSACTION'
@@ -11,6 +14,33 @@ export const loadTransactions = (transactions) => {
         transactions: transactions
       }
     }
+}
+
+export const fetchFirebaseTransactions = () => {
+  return (dispatch) => {
+    // Firebase
+    firebaseInitialize()
+    const transactionsRef = firebase.app().database().ref('transactions')
+    transactionsRef.once('value', (snap) => {
+        let transactions = []
+        snap.forEach((transaction) => {
+            const { title, category, description, inflow, outflow } = transaction.val()
+
+            transactions.push({
+                title: title,
+                category: category,
+                description: description,
+                inflow: inflow,
+                outflow: outflow,
+                _key: transaction.key
+            })
+        })
+
+        dispatch(loadTransactions(transactions))
+    }, (error) => {
+        console.log("Error: " + error.code);
+    });
+  }
 }
 
 // Reducer
