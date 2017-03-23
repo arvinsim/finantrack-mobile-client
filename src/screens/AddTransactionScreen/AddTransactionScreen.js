@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
+import TransactionForm from '../../components/TransactionForm'
 
 class AddTransactionScreen extends Component {
     static navigationOptions = {
-        title: 'Finantrack - Add Transaction'
+        title: 'Add Transaction'
     }
 
     render() {
+        const props = this.props
         return (
-            <View>
-                <Text>This is the Add Transaction Screen</Text>
-            </View>
-        );
+            <TransactionForm {...props} />
+        )
     }
 }
 
-export default AddTransactionScreen
+const mapStateToProps = (state) => {
+  return {
+      buttonTitle: 'Save Transaction'
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      handleSubmit: () => {
+        console.log(this)  
+      }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTransactionScreen)
