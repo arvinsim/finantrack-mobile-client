@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation'
+import { fetchFirebaseTransactions } from './store/data'
 
 // Config
 import Config from 'react-native-config'
@@ -18,6 +19,9 @@ import store from './store'
 import HomeScreen from './screens/HomeScreen'
 import AddTransactionScreen from './screens/AddTransactionScreen'
 import UpdateTransactionScreen from './screens/UpdateTransactionScreen'
+
+// Initial fetch of firebase data
+store.dispatch(fetchFirebaseTransactions())
 
 const AppNavigator = StackNavigator({
   Home: { screen: HomeScreen },
