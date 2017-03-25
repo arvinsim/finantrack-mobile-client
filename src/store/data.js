@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { firebaseInitialize } from '../lib/firebase'
+import { addTransactionToFirebase } from '../lib/firebase'
 
 // Constants
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION'
@@ -44,17 +44,13 @@ export const fetchFirebaseTransactions = () => {
 
 export const addTransaction = (values) => {
   return (dispatch) => {
-    firebaseInitialize()
-    const transactionsRef = firebase.app().database().ref('transactions') 
-    const newTransactionRef = transactionsRef.push()
-    // const { title, date, inflow, outflow } = values
+    addTransactionToFirebase(values).then(() => {
+      // TODO: Go back
 
-    newTransactionRef.set(values).then(() => {
-      console.log('Add Transaction SUCCESSFUL')
-      return true
+      // Fetch Transactions
+      dispatch(fetchFirebaseTransactions())
     }).catch((error) => {
       console.log('Add Transaction ERROR')
-      return false
     })
   }
 }

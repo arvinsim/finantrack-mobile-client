@@ -44,3 +44,11 @@ export const firebaseInitialize = () => {
         });
     }
 }
+
+export const addTransactionToFirebase = (values) => {
+    firebaseInitialize()
+    const transactionsRef = firebase.app().database().ref('transactions') 
+    const newTransactionRef = transactionsRef.push()
+
+    return newTransactionRef.set(values)
+}
