@@ -11,6 +11,7 @@ class AddTransactionScreen extends Component {
 
     render() {
         const props = this.props
+
         return (
             <TransactionForm {...props} />
         )
@@ -23,10 +24,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
       handleSubmitHandler: (values) => {
-        dispatch(addTransaction(values))
+        const { navigation: { goBack } } = ownProps
+        dispatch(addTransaction(values, () => goBack()))
       }
   }
 }
