@@ -43,6 +43,12 @@ export const fetchFirebaseTransactions = () => {
   }
 }
 
+export const addTransaction = (values) => {
+  return (dispatch) => {
+    console.log(values)
+  }
+}
+
 // Reducer
 const initialState = {
   transactions: []

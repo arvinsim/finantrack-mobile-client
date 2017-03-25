@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TransactionForm from '../../components/TransactionForm'
 
+import { addTransaction } from '../../store/data'
+
 class AddTransactionScreen extends Component {
     static navigationOptions = {
         title: 'Add Transaction'
@@ -23,8 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      handleSubmit: () => {
-        console.log(this)  
+      handleSubmitHandler: (values) => {
+        dispatch(addTransaction(values))
       }
   }
 }
