@@ -18,7 +18,6 @@ export const loadTransactions = (transactions) => {
 
 export const fetchFirebaseTransactions = () => {
   return (dispatch) => {
-    // Firebase
     firebaseInitialize()
     const transactionsRef = firebase.app().database().ref('transactions')
     transactionsRef.once('value', (snap) => {
@@ -45,7 +44,18 @@ export const fetchFirebaseTransactions = () => {
 
 export const addTransaction = (values) => {
   return (dispatch) => {
-    console.log(values)
+    firebaseInitialize()
+    const transactionsRef = firebase.app().database().ref('transactions') 
+    const newTransactionRef = transactionsRef.push()
+    // const { title, date, inflow, outflow } = values
+
+    newTransactionRef.set(values).then(() => {
+      console.log('Add Transaction SUCCESSFUL')
+      return true
+    }).catch((error) => {
+      console.log('Add Transaction ERROR')
+      return false
+    })
   }
 }
 

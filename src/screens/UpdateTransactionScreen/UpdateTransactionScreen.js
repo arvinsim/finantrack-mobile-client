@@ -1,18 +1,35 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
+import TransactionForm from '../../components/TransactionForm'
 
 class UpdateTransactionScreen extends Component {
     static navigationOptions = {
-        title: 'Finantrack - Update Transaction',
+        title: 'Update Transaction'
     }
 
     render() {
+        const props = this.props
         return (
-            <View>
-                <Text>This is the Update Transaction Screen</Text>
-            </View>
+            <TransactionForm {...props} />
         )
     }
 }
 
-export default UpdateTransactionScreen
+const mapStateToProps = (state) => {
+  return {
+      buttonTitle: 'Update Transaction'
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      handleSubmit: (values) => {
+          console.log(values)
+      }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UpdateTransactionScreen)
