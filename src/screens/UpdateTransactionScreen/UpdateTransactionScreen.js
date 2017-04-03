@@ -3,29 +3,30 @@ import { connect } from 'react-redux'
 import TransactionForm from '../../components/TransactionForm'
 
 class UpdateTransactionScreen extends Component {
-    static navigationOptions = {
-        title: 'Update Transaction'
-    }
+  static navigationOptions = {
+    title: 'Update Transaction'
+  }
 
-    render() {
-        const props = this.props
-        return (
-            <TransactionForm {...props} />
-        )
-    }
+  render() {
+    const { navigation: { state: { params } } } = this.props
+
+    return (
+      <TransactionForm initialValues={params} {...this.props} />
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-      buttonTitle: 'Update Transaction'
+    buttonTitle: 'Update Transaction'
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      handleSubmit: (values) => {
-          console.log(values)
-      }
+    handleSubmitHandler: (values) => {
+      console.log(values)
+    }
   }
 }
 
