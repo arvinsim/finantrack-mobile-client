@@ -1,5 +1,9 @@
 import * as firebase from 'firebase'
-import { addTransactionToFirebase, firebaseInitialize } from '../lib/firebase'
+import {
+  addTransactionToFirebase,
+  updateTransactionInFirebase,
+  firebaseInitialize
+} from '../lib/firebase'
 
 // Constants
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION'
@@ -48,6 +52,16 @@ export const addTransaction = (values, successCallback) => {
       successCallback()
     }).catch((error) => {
       console.log('addTransaction Error: ', error)
+    })
+  }
+}
+
+export const updateTransaction = (key, values, successCallback) => {
+  return (dispatch) => {
+    updateTransactionInFirebase(key, values).then(() => {
+      successCallback()
+    }).catch((error) => {
+      console.log('updateTransaction Error: ', error)
     })
   }
 }
