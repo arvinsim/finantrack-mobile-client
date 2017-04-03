@@ -22,11 +22,15 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleSubmitHandler: (values) => {
-      console.log(values)
-    }
+      handleSubmitHandler: (values) => {
+        // TODO: Update transaction then go back if it successful, else stay on page and display
+        // an error message
+
+        // dispatch(addTransaction(values, () => goBack()))
+        // const { navigation: { goBack } } = ownProps
+      }
   }
 }
 
