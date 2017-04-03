@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { addTransactionToFirebase } from '../lib/firebase'
+import { addTransactionToFirebase, firebaseInitialize } from '../lib/firebase'
 
 // Constants
 export const CREATE_TRANSACTION = 'CREATE_TRANSACTION'
@@ -59,12 +59,12 @@ const initialState = {
 
 function dataReducer(state = initialState, action) {
   switch (action.type) {
-  case LOAD_TRANSACTIONS:
-    return Object.assign({}, state, {
-      transactions: action.payload.transactions  
-    })
-  default:
-    return state
+    case LOAD_TRANSACTIONS:
+      return Object.assign({}, state, {
+        transactions: action.payload.transactions
+      })
+    default:
+      return state
   }
 }
 
