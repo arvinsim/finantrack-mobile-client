@@ -4,6 +4,7 @@ import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 
 import TransactionList from '../../components/TransactionList'
+import TransactionListSearchBar from '../../components/TransactionListSearchBar'
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -19,6 +20,9 @@ class HomeScreen extends Component {
           onPress={() => navigate('AddTransaction')}
           title="Add New Transaction"
           backgroundColor="#3748AC" />
+        <View>
+          <TransactionListSearchBar placeholder='Search Transactions...' />
+        </View>
         <TransactionList onPress={onPressHandler}
           transactions={transactions} />
       </View>

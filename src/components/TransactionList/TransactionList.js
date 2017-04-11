@@ -3,16 +3,16 @@ import styles from './styles.js'
 import React, { Component } from 'react'
 import {
   View,
+  ScrollView,
   Text,
   ListView,
 } from 'react-native'
 import {
   List,
-  ListItem,
-  SearchBar,
+  ListItem
 } from 'react-native-elements'
-import TransactionListItem from '../TransactionListItem'
 
+import TransactionListItem from '../TransactionListItem'
 
 class TransactionList extends Component {
   render() {
@@ -21,10 +21,8 @@ class TransactionList extends Component {
     return (
       <View>
         <View>
-          <SearchBar placeholder='Search Transactions...' />
-        </View>
-        <View>
           <List>
+            <ScrollView>
             {
               transactions.map((item, i) => (
                 <TransactionListItem
@@ -37,6 +35,7 @@ class TransactionList extends Component {
                 />
               ))
             }
+            </ScrollView>
           </List>
         </View>
       </View>
