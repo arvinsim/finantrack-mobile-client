@@ -41,8 +41,30 @@ export const firebaseInitialize = () => {
       databaseURL: Config.FIREBASE_DATABASE_URL,
       storageBucket: Config.FIREBASE_STORAGE_BUCKET,
       messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
-    });
+    })
   }
+}
+
+export const getTransactionsFromFirebase = () => {
+  firebaseInitialize()
+  const transactionsRef = firebase.app().database().ref('transactions')
+  return transactionsRef.once('value').then((snap) => {
+    let transactions = []
+    snap.forEach((transaction) => {
+      const { title, category, description, inflow, outflow } = transaction.val()
+
+      transactions.push({
+        title: title,
+        category: category,
+        description: description,
+        inflow: inflow,
+        outflow: outflow,
+        _key: transaction.key
+      })
+    })
+
+    return transactions
+  })
 }
 
 export const addTransactionToFirebase = (values) => {

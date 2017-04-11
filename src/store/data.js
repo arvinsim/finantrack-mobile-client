@@ -1,8 +1,8 @@
 import * as firebase from 'firebase'
 import {
+  getTransactionsFromFirebase,
   addTransactionToFirebase,
-  updateTransactionInFirebase,
-  firebaseInitialize
+  updateTransactionInFirebase
 } from '../lib/firebase'
 
 // Constants
@@ -22,45 +22,25 @@ export const loadTransactions = (transactions) => {
 
 export const fetchFirebaseTransactions = () => {
   return (dispatch) => {
-    firebaseInitialize()
-    const transactionsRef = firebase.app().database().ref('transactions')
-    transactionsRef.once('value', (snap) => {
-      let transactions = []
-      snap.forEach((transaction) => {
-        const { title, category, description, inflow, outflow } = transaction.val()
-
-        transactions.push({
-          title: title,
-          category: category,
-          description: description,
-          inflow: inflow,
-          outflow: outflow,
-          _key: transaction.key
-        })
-      })
-
+    getTransactionsFromFirebase().then((transactions) => {
       dispatch(loadTransactions(transactions))
-    }, (error) => {
+    }).catch((error) => {
       console.log("Error: " + error.code);
-    });
+    })
   }
 }
 
-export const addTransaction = (values, successCallback) => {
+export const addTransaction = (values, success) => {
   return (dispatch) => {
-    addTransactionToFirebase(values).then(() => {
-      successCallback()
-    }).catch((error) => {
+    return addTransactionToFirebase(values).then(success).catch((error) => {
       console.log('addTransaction Error: ', error)
     })
   }
 }
 
-export const updateTransaction = (key, values, successCallback) => {
+export const updateTransaction = (key, values, success) => {
   return (dispatch) => {
-    updateTransactionInFirebase(key, values).then(() => {
-      successCallback()
-    }).catch((error) => {
+    updateTransactionInFirebase(key, values).then(success).catch((error) => {
       console.log('updateTransaction Error: ', error)
     })
   }
@@ -73,12 +53,12 @@ const initialState = {
 
 function dataReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_TRANSACTIONS:
-      return Object.assign({}, state, {
-        transactions: action.payload.transactions
-      })
-    default:
-      return state
+  case LOAD_TRANSACTIONS:
+    return Object.assign({}, state, {
+      transactions: action.payload.transactions
+    })
+  default:
+    return state
   }
 }
 
