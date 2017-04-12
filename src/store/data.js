@@ -2,7 +2,8 @@ import * as firebase from 'firebase'
 import {
   getTransactionsFromFirebase,
   addTransactionToFirebase,
-  updateTransactionInFirebase
+  updateTransactionInFirebase,
+  deleteTransactionInFirebase
 } from '../lib/firebase'
 
 // Constants
@@ -43,6 +44,19 @@ export const updateTransaction = (key, values, success) => {
     updateTransactionInFirebase(key, values).then(success).catch((error) => {
       console.log('updateTransaction Error: ', error)
     })
+  }
+}
+
+export const deleteTransaction = (key, success) => {
+  return (dispatch) => {
+    deleteTransactionInFirebase(key)
+      .then(success)
+      .then(() => {
+        dispatch(fetchFirebaseTransactions())
+      })
+      .catch((error) => {
+        console.log('deleteTransaction Error: ', error)
+      })
   }
 }
 

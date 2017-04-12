@@ -6,6 +6,8 @@ import { Button } from 'react-native-elements'
 import TransactionList from '../../components/TransactionList'
 import TransactionListSearchBar from '../../components/TransactionListSearchBar'
 
+import { deleteTransaction } from '../../store/data'
+
 class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Finantrack'
@@ -58,7 +60,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       })
     },
     handleDeleteTransaction: (item) => {
-      console.log('handleDeleteTransaction')
+        dispatch(deleteTransaction(item._key))
     }
   }
 }

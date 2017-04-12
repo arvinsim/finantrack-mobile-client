@@ -81,3 +81,10 @@ export const updateTransactionInFirebase = (key, values) => {
 
   return transactionRef.update(values)
 }
+
+export const deleteTransactionInFirebase = (key) => {
+  firebaseInitialize()
+  const transactionRef = firebase.app().database().ref('transactions/' + key)
+
+  return transactionRef.remove()
+}
