@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { ListItem, SearchBar } from 'react-native-elements'
 
-class TrasnsactionListSearchBar extends Component {
+class TransactionListSearchBar extends Component {
     render() {
         return (
           <View>
@@ -14,4 +14,4 @@ class TrasnsactionListSearchBar extends Component {
     }
 }
 
-export default TrasnsactionListSearchBar
+export default TransactionListSearchBar

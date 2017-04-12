@@ -4,8 +4,7 @@ import React, { Component } from 'react'
 import {
   View,
   ScrollView,
-  Text,
-  ListView,
+  Text
 } from 'react-native'
 import {
   List,
@@ -15,8 +14,14 @@ import {
 import TransactionListItem from '../TransactionListItem'
 
 class TransactionList extends Component {
-  render() {
-    const { transactions, onPress } = this.props
+  _renderListItem (item) {
+    return (
+      <Text>{item.transaction}</Text>
+    )
+  }
+
+  render () {
+    const { transactions, handleEdit } = this.props
 
     return (
       <View>
@@ -31,7 +36,7 @@ class TransactionList extends Component {
                   subtitle={
                     <Text>{item.description}</Text>
                   }
-                  onPress={onPress.bind(this, item)}
+                  handleEdit={handleEdit.bind(this, item)}
                 />
               ))
             }
@@ -50,7 +55,7 @@ TransactionList.propTypes = {
       description: React.PropTypes.string
     })
   ),
-  onPress: React.PropTypes.func.isRequired
+  handleEdit: React.PropTypes.func.isRequired
 }
 
 export default TransactionList

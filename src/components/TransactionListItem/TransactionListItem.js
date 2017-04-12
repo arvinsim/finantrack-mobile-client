@@ -1,25 +1,30 @@
 import styles from './styles.js'
 
 import React, { Component } from 'react'
+import { View } from 'react-native'
 import { ListItem } from 'react-native-elements'
 
-class TransactionListItem extends Component {
-    render() {
-        const { title, subtitle, onPress } = this.props
+import TransactionListItemOptions from '../TransactionListItemOptions'
 
-        return (
-            <ListItem
-                title={title} 
-                subtitle={subtitle}
-                onPress={onPress}
-            />
-        )
-    }
+class TransactionListItem extends Component {
+  render() {
+    const { title, subtitle, handleEdit } = this.props
+
+    return (
+      <View>
+        <ListItem
+          title={title}
+          subtitle={subtitle}
+        />
+        <TransactionListItemOptions handleEdit={handleEdit} />
+      </View>
+    )
+  }
 }
 
 TransactionListItem.propTypes = {
-    title: React.PropTypes.string,
-    onPress: React.PropTypes.func
+  title: React.PropTypes.string,
+  handleEdit: React.PropTypes.func.isRequired
 }
 
 export default TransactionListItem

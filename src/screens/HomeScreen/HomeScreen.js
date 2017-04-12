@@ -12,19 +12,24 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { transactions, onPressHandler, navigation: { navigate } } = this.props
+    const { transactions, handleEdit, navigation: { navigate } } = this.props
 
     return (
       <View>
         <Button
           onPress={() => navigate('AddTransaction')}
           title="Add New Transaction"
-          backgroundColor="#3748AC" />
+          backgroundColor="#3748AC" 
+        />
         <View>
-          <TransactionListSearchBar placeholder='Search Transactions...' />
+          <TransactionListSearchBar 
+            placeholder='Search Transactions...' 
+          />
         </View>
-        <TransactionList onPress={onPressHandler}
-          transactions={transactions} />
+        <TransactionList 
+          handleEdit={handleEdit}
+          transactions={transactions} 
+        />
       </View>
     )
   }
@@ -38,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onPressHandler: (item) => {
+    handleEdit: (item) => {
       const { navigation: { navigate }} = ownProps
       
       navigate('UpdateTransaction', {
