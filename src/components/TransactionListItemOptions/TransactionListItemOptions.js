@@ -6,14 +6,14 @@ import { Button } from 'react-native-elements'
 
 class TransactionListItemOptions extends Component {
   render() {
-    const { handleEdit } = this.props
+    const { handleEditTransaction, handleDeleteTransaction } = this.props
     return (
       <View>
         <View style={styles.edit}>
-          <Button title='Edit' onPress={handleEdit} />
+          <Button title='Edit' onPress={handleEditTransaction} />
         </View>
         <View style={styles.delete}>
-          <Button title='Delete' />
+          <Button title='Delete' onPress={handleDeleteTransaction} />
         </View>
       </View>
     )

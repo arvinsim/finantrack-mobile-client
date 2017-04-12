@@ -12,7 +12,9 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { transactions, handleEdit, navigation: { navigate } } = this.props
+    const { transactions, 
+      handleEditTransaction, handleDeleteTransaction,
+      navigation: { navigate } } = this.props
 
     return (
       <View>
@@ -27,7 +29,8 @@ class HomeScreen extends Component {
           />
         </View>
         <TransactionList 
-          handleEdit={handleEdit}
+          handleEditTransaction={handleEditTransaction}
+          handleDeleteTransaction={handleDeleteTransaction}
           transactions={transactions} 
         />
       </View>
@@ -43,7 +46,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleEdit: (item) => {
+    handleEditTransaction: (item) => {
       const { navigation: { navigate }} = ownProps
       
       navigate('UpdateTransaction', {
@@ -53,6 +56,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         inflow: item.inflow,
         outflow: item.outflow
       })
+    },
+    handleDeleteTransaction: (item) => {
+      console.log('handleDeleteTransaction')
     }
   }
 }

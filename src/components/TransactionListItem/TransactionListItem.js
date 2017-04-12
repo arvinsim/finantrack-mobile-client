@@ -8,7 +8,7 @@ import TransactionListItemOptions from '../TransactionListItemOptions'
 
 class TransactionListItem extends Component {
   render() {
-    const { title, subtitle, handleEdit } = this.props
+    const { title, subtitle, handleEditTransaction, handleDeleteTransaction } = this.props
 
     return (
       <View>
@@ -16,7 +16,10 @@ class TransactionListItem extends Component {
           title={title}
           subtitle={subtitle}
         />
-        <TransactionListItemOptions handleEdit={handleEdit} />
+        <TransactionListItemOptions 
+          handleEditTransaction={handleEditTransaction} 
+          handleDeleteTransaction={handleDeleteTransaction}
+        />
       </View>
     )
   }
@@ -24,7 +27,8 @@ class TransactionListItem extends Component {
 
 TransactionListItem.propTypes = {
   title: React.PropTypes.string,
-  handleEdit: React.PropTypes.func.isRequired
+  handleEditTransaction: React.PropTypes.func.isRequired,
+  handleDeleteTransaction: React.PropTypes.func.isRequired
 }
 
 export default TransactionListItem

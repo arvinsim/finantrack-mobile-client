@@ -11,7 +11,7 @@ const renderInputField = ({ input, label, meta: { touched, error }, ...custom })
 
 class TransactionForm extends Component {
   render() {
-    const { buttonTitle, handleSubmit, handleSubmitHandler } = this.props
+    const { buttonTitle, handleSubmit, handleAddTransaction } = this.props
 
     return (
       <View>
@@ -30,7 +30,7 @@ class TransactionForm extends Component {
         <Button
           title={buttonTitle}
           backgroundColor="#159488"
-          onPress={handleSubmit(handleSubmitHandler)}
+          onPress={handleSubmit(handleAddTransaction)}
         />
       </View>
     )
@@ -39,7 +39,7 @@ class TransactionForm extends Component {
 
 TransactionForm.propTypes = {
   buttonTitle: React.PropTypes.string.isRequired,
-  handleSubmitHandler: React.PropTypes.func.isRequired
+  handleAddTransaction: React.PropTypes.func.isRequired
 }
 
 TransactionForm = reduxForm({

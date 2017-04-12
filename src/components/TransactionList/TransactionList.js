@@ -21,7 +21,7 @@ class TransactionList extends Component {
   }
 
   render () {
-    const { transactions, handleEdit } = this.props
+    const { transactions, handleEditTransaction, handleDeleteTransaction } = this.props
 
     return (
       <View>
@@ -36,7 +36,8 @@ class TransactionList extends Component {
                   subtitle={
                     <Text>{item.description}</Text>
                   }
-                  handleEdit={handleEdit.bind(this, item)}
+                  handleEditTransaction={handleEditTransaction.bind(this, item)}
+                  handleDeleteTransaction={handleDeleteTransaction.bind(this, item)}
                 />
               ))
             }
@@ -55,7 +56,8 @@ TransactionList.propTypes = {
       description: React.PropTypes.string
     })
   ),
-  handleEdit: React.PropTypes.func.isRequired
+  handleEditTransaction: React.PropTypes.func.isRequired,
+  handleDeleteTransaction: React.PropTypes.func.isRequired
 }
 
 export default TransactionList
