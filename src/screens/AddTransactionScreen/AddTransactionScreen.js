@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-      handleAddTransaction: (values) => {
+      handleSubmitHandler: (values) => {
         const { navigation: { goBack } } = ownProps
         dispatch(addTransaction(values, () => goBack()))
       }

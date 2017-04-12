@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
-import { Button } from 'react-native-elements'
+import { 
+  View,
+  Text 
+} from 'react-native'
+import { Button, } from 'react-native-elements'
 
 import TransactionList from '../../components/TransactionList'
 import TransactionListSearchBar from '../../components/TransactionListSearchBar'
