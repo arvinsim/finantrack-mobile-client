@@ -9,12 +9,8 @@ class TransactionListItemOptions extends Component {
     const { handleEditTransaction, handleDeleteTransaction } = this.props
     return (
       <View>
-        <View style={styles.edit}>
-          <Button title='Edit' onPress={handleEditTransaction} />
-        </View>
-        <View style={styles.delete}>
-          <Button title='Delete' onPress={handleDeleteTransaction} />
-        </View>
+        <Button buttonStyle={styles.edit} title='Edit' onPress={handleEditTransaction} />
+        <Button buttonStyle={styles.delete} title='Delete' onPress={handleDeleteTransaction} />
       </View>
     )
   }

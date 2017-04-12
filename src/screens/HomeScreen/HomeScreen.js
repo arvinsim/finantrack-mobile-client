@@ -8,6 +8,8 @@ import TransactionListSearchBar from '../../components/TransactionListSearchBar'
 
 import { deleteTransaction } from '../../store/data'
 
+import colors from '../../config/colors'
+
 class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Finantrack'
@@ -23,7 +25,7 @@ class HomeScreen extends Component {
         <Button
           onPress={() => navigate('AddTransaction')}
           title="Add New Transaction"
-          backgroundColor="#3748AC" 
+          backgroundColor={colors.primary} 
         />
         <View>
           <TransactionListSearchBar 
