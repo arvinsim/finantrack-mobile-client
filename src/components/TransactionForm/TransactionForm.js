@@ -2,11 +2,34 @@ import styles from './styles.js'
 
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
-import { View } from 'react-native'
-import { Button, FormLabel, FormInput } from 'react-native-elements'
+import { View, Text } from 'react-native'
+import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+
+import { validateTransaction } from '../../lib/validation'
+import colors from '../../config/colors'
 
 const renderInputField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <FormInput {...input} />
+  <View>
+    <FormLabel>{label}</FormLabel>
+    <FormInput {...input} />
+    {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
+  </View>
+)
+
+const renderDateField = ({ input, label, meta: { touched, error }, ...custom }) => (
+  <View>
+    <FormLabel>{label}</FormLabel>
+    <FormInput {...input} />
+    {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
+  </View>
+)
+
+const renderMoneyField = ({ input, label, meta: { touched, error }, ...custom }) => (
+  <View>
+    <FormLabel>{label}</FormLabel>
+    <FormInput {...input} keyboardType="numeric" />
+    {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
+  </View>
 )
 
 class TransactionForm extends Component {
@@ -15,21 +38,14 @@ class TransactionForm extends Component {
 
     return (
       <View>
-        <FormLabel>Title</FormLabel>
-        <Field name="title" component={renderInputField} />
-
-        <FormLabel>Date</FormLabel>
-        <Field name="description" component={renderInputField} />
-
-        <FormLabel>Inflow</FormLabel>
-        <Field name="inflow" component={renderInputField} />
-
-        <FormLabel>Outflow</FormLabel>
-        <Field name="outflow" component={renderInputField} />
+        <Field name="title" label="Title" component={renderInputField} />
+        <Field name="date" label="Date" component={renderDateField} />
+        <Field name="inflow" label="Inflow" component={renderMoneyField} />
+        <Field name="outflow" label="Outflow" component={renderMoneyField} />
 
         <Button
           title={buttonTitle}
-          backgroundColor="#159488"
+          backgroundColor={colors.primary}
           onPress={handleSubmit(handleSubmitHandler)}
         />
       </View>
@@ -43,7 +59,8 @@ TransactionForm.propTypes = {
 }
 
 TransactionForm = reduxForm({
-  form: 'add_transaction' // a unique name for this form
+  form: 'add_transaction', // a unique name for this form
+  validateTransaction
 })(TransactionForm)
 
 export default TransactionForm
