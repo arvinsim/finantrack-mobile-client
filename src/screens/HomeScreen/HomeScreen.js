@@ -6,10 +6,8 @@ import {
 } from 'react-native'
 import { Button, } from 'react-native-elements'
 
-import TransactionList from '../../components/TransactionList'
+import TransactionListContainer from '../../containers/TransactionListContainer'
 import TransactionListSearchBar from '../../components/TransactionListSearchBar'
-
-import { deleteTransaction } from '../../store/data'
 
 import colors from '../../config/colors'
 
@@ -19,9 +17,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { transactions, 
-      handleEditTransaction, handleDeleteTransaction,
-      navigation: { navigate } } = this.props
+    const { transactions, navigation: { navigate } } = this.props
 
     return (
       <View>
@@ -35,42 +31,10 @@ class HomeScreen extends Component {
             placeholder='Search Transactions...' 
           />
         </View>
-        <TransactionList 
-          handleEditTransaction={handleEditTransaction}
-          handleDeleteTransaction={handleDeleteTransaction}
-          transactions={transactions} 
-        />
+        <TransactionListContainer />
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    transactions: state.data.transactions
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    handleEditTransaction: (item) => {
-      const { navigation: { navigate }} = ownProps
-      
-      navigate('UpdateTransaction', {
-        _key: item._key,
-        title: item.title,
-        description: item.description,
-        inflow: item.inflow,
-        outflow: item.outflow
-      })
-    },
-    handleDeleteTransaction: (item) => {
-        dispatch(deleteTransaction(item._key))
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeScreen)
+export default HomeScreen
