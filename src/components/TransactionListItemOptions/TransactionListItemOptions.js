@@ -23,4 +23,9 @@ class TransactionListItemOptions extends Component {
   }
 }
 
+TransactionListItemOptions.propTypes = {
+  handleEditTransaction: React.PropTypes.func.isRequired,
+  handleDeleteTransaction: React.PropTypes.func.isRequired
+}
+
 export default TransactionListItemOptions

@@ -32,12 +32,7 @@ class TransactionList extends Component {
               transactions.map((item, i) => (
                 <TransactionListItem
                   key={i}
-                  title={item.title}
-                  subtitle={
-                    <Text>{item.description}</Text>
-                  }
-                  handleEditTransaction={handleEditTransaction.bind(this, item)}
-                  handleDeleteTransaction={handleDeleteTransaction.bind(this, item)}
+                  item={item}
                 />
               ))
             }
@@ -54,10 +49,8 @@ TransactionList.propTypes = {
     React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       description: React.PropTypes.string
-    })
-  ),
-  handleEditTransaction: React.PropTypes.func.isRequired,
-  handleDeleteTransaction: React.PropTypes.func.isRequired
+    }).isRequired
+  )
 }
 
 export default TransactionList

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { ListItem } from 'react-native-elements'
 
-import TransactionListItemOptions from '../TransactionListItemOptions'
+import TransactionListItemOptionsContainer from '../../containers/TransactionListItemOptionsContainer'
 
 class TransactionListItem extends Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class TransactionListItem extends Component {
   }
 
   _toggleShowOptions () {
-    console.log(this.state)
     if (this.state.showOptions) {
       this.setState({
         showOptions: false
@@ -28,20 +27,18 @@ class TransactionListItem extends Component {
   }
 
   render() {
-    const { title, subtitle, handleEditTransaction, handleDeleteTransaction } = this.props
+    const { item } = this.props
+    const { title, description } = item
 
     return (
       <View>
         <ListItem
           title={title}
-          subtitle={subtitle}
+          subtitle={description}
           onPress={this._toggleShowOptions.bind(this)}          
         />
         { this.state.showOptions && 
-        <TransactionListItemOptions 
-          handleEditTransaction={handleEditTransaction} 
-          handleDeleteTransaction={handleDeleteTransaction}
-        />
+        <TransactionListItemOptionsContainer item={item} />
         }
       </View>
     )
@@ -49,9 +46,7 @@ class TransactionListItem extends Component {
 }
 
 TransactionListItem.propTypes = {
-  title: React.PropTypes.string,
-  handleEditTransaction: React.PropTypes.func.isRequired,
-  handleDeleteTransaction: React.PropTypes.func.isRequired
+  title: React.PropTypes.string
 }
 
 export default TransactionListItem
