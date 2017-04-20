@@ -3,10 +3,9 @@ import { StackNavigator, addNavigationHelpers } from 'react-navigation'
 import { connect } from 'react-redux'
 
 // Configuration variables
-import { AppRouteConfigs } from '../config/navigation'
-import Config from 'react-native-config'
+import { routeConfigurations, stackNavigatorConfiguration } from '../config/navigation'
 
-const AppNavigator = StackNavigator(AppRouteConfigs)
+const AppNavigator = StackNavigator(routeConfigurations, stackNavigatorConfiguration)
 
 class AppWithNavigationState extends Component {
   render() {
