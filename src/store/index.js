@@ -1,4 +1,7 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { persistStore, autoRehydrate } from 'redux-persist'
+import { AsyncStorage } from 'react-native'
+
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 
@@ -13,4 +16,17 @@ const rootReducer = combineReducers({
   form: formReducer
 })
 
-export default createStore(rootReducer, middleware)
+// add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)
+const store = createStore(
+  rootReducer, 
+  undefined,
+  compose(
+    middleware,
+    autoRehydrate()
+  )
+)
+
+// begin periodically persisting the store
+persistStore(store, {storage: AsyncStorage})
+
+export default store
