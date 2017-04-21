@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { View, Text } from 'react-native'
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import DatePicker from 'react-native-datepicker'
 
 import { validateTransaction } from '../../lib/validation'
 import colors from '../../config/colors'
