@@ -7,17 +7,14 @@ import TransactionListItemOptions from '../components/TransactionListItemOptions
 import { deleteTransaction } from '../store/data'
 
 const mapStateToProps = (state) => {
-  return {
-    nav: state.nav
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps)
-  const { nav: { navigate }, item } = ownProps
+  const { item } = ownProps
   return {
     handleEditTransaction: () => {
-      navigate({
+      dispatch(NavigationActions.navigate({
         routeName: 'UpdateTransaction',
         params: {
           _key: item._key,
@@ -26,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           inflow: item.inflow,
           outflow: item.outflow
         }
-      })
+      }))
     },
     handleDeleteTransaction: () => {
       dispatch(deleteTransaction(item._key))
