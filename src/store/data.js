@@ -26,7 +26,7 @@ export const fetchFirebaseTransactions = () => {
     getTransactionsFromFirebase().then((transactions) => {
       dispatch(loadTransactions(transactions))
     }).catch((error) => {
-      console.log("Error: " + error.code);
+      console.log("Error: " + error);
     })
   }
 }
