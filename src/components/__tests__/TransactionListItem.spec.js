@@ -8,8 +8,7 @@ import renderer from 'react-test-renderer'
 test('renders correctly', () => {
   const tree = renderer.create(
     <TransactionListItem
-      handleEditTransaction={()=>{}} 
-      handleDeleteTransaction={()=>{}}
+      item={{ title: 'foobar'}}
     />
   ).toJSON()
   expect(tree).toMatchSnapshot()

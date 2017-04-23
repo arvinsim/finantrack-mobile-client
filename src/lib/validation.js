@@ -1,23 +1,22 @@
+import { isNumber } from 'lodash/core'
+
 export const validateTransaction = values => {
   const errors = {}
-  values = values.toJS()
 
   // TODO: Date should be a in ISO format
   if (true) {
     errors.date = "Please enter a valid date"
   }
 
-  // TODO: Inflow should be 
-  if (true) {
+  // Inflow should be a number
+  if (!isNumber(values.inflow)) {
     errors.inflow = 'Please input a number for inflow'
   }
 
-  // TODO: Outflow should be a number
-  if (true) {
+  // Outflow should be a number
+  if (!isNumber(values.outflow)) {
     errors.outflow = 'Please input a number for outflow'
   }
-
-  console.log(errors)
 
   return errors
 } 

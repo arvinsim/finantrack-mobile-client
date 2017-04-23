@@ -9,8 +9,6 @@ test('renders correctly', () => {
   const tree = renderer.create(
     <TransactionList 
       transactions={[]}
-      handleEditTransaction={()=>{}} 
-      handleDeleteTransaction={()=>{}}
     />
   ).toJSON()
   expect(tree).toMatchSnapshot()

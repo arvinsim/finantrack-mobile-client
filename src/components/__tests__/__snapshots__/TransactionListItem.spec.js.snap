@@ -60,7 +60,40 @@ exports[`renders correctly 1`] = `
         <View
           style={undefined}
         >
-          <View />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": undefined,
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                Array [
+                  Object {
+                    "color": "#43484d",
+                    "fontSize": 17.5,
+                  },
+                  Object {
+                    "marginLeft": 10,
+                  },
+                  undefined,
+                  undefined,
+                ],
+              ]
+            }
+          >
+            foobar
+          </Text>
         </View>
         <View
           style={undefined}
