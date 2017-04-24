@@ -39,14 +39,6 @@ export const addTransaction = (values, success) => {
   }
 }
 
-export const updateTransaction = (key, values, success) => {
-  return (dispatch) => {
-    updateTransactionInFirebase(key, values).then(success).catch((error) => {
-      console.log('updateTransaction Error: ', error)
-    })
-  }
-}
-
 export const deleteTransaction = (key, success) => {
   return (dispatch) => {
     deleteTransactionInFirebase(key)
