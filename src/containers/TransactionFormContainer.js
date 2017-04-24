@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import TransactionForm from '../components/TransactionForm'
+import { NavigationActions } from 'react-navigation'
 
+import TransactionForm from '../components/TransactionForm'
 import { updateTransaction } from '../store/data'
 
 class TransactionFormContainer extends Component {
@@ -26,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       delete values._key
       // Update transaction then go back if it successful,
       // else stay on page and display an error message
-      const { navigation: { goBack } } = ownProps
+      const { goBack } = NavigationActions
       dispatch(updateTransaction(key, values, () => goBack()))
     }
   }
