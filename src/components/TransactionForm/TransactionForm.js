@@ -9,33 +9,34 @@ import DatePicker from 'react-native-datepicker'
 import { validateTransaction } from '../../lib/validation'
 import colors from '../../config/colors'
 
-const renderInputField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderInputField = ({ input: { onChange, ...restInput }, label, meta: { touched, error }, ...custom }) => (
   <View>
     <FormLabel>{label}</FormLabel>
-    <FormInput {...input} />
+    <FormInput onChangeText={onChange} {...restInput} />
     {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
   </View>
 )
 
-const renderDateField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderDateField = ({ input: { onChange, ...restInput }, label, meta: { touched, error }, ...custom }) => (
   <View>
     <FormLabel>{label}</FormLabel>
-    <FormInput {...input} />
+    <FormInput onChangeText={onChange} {...restInput} />
     {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
   </View>
 )
 
-const renderMoneyField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderMoneyField = ({ input: { onChange, ...restInput }, label, meta: { touched, error }, ...custom }) => (
   <View>
     <FormLabel>{label}</FormLabel>
-    <FormInput {...input} keyboardType="numeric" />
+    <FormInput keyboardType="numeric" onChangeText={onChange} {...restInput}  />
     {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
   </View>
 )
 
 class TransactionForm extends Component {
   render() {
-    const { buttonTitle, handleSubmit, handleSubmitHandler } = this.props
+    const { buttonTitle, handleSubmit, handleSubmitHandler, submitting } = this.props
+    const title = submitting ? 'processing' : buttonTitle 
 
     return (
       <View>
@@ -45,9 +46,10 @@ class TransactionForm extends Component {
         <Field name="outflow" label="Outflow" component={renderMoneyField} />
 
         <Button
-          title={buttonTitle}
+          title={title}
           backgroundColor={colors.primary}
           onPress={handleSubmit(handleSubmitHandler)}
+          disabled={submitting}
         />
       </View>
     )
@@ -60,8 +62,8 @@ TransactionForm.propTypes = {
 }
 
 TransactionForm = reduxForm({
-  form: 'add_transaction', // a unique name for this form
-  validateTransaction
+  form: 'transaction_form', // a unique name for this form
+  validate: validateTransaction
 })(TransactionForm)
 
 export default TransactionForm

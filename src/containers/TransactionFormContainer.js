@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const { back } = NavigationActions
       updateTransactionInFirebase(key, values)
         .then(() => {
-          dispatch(back())
+          return dispatch(back())
         })
         .catch((error) => {
           console.log('updateTransaction Error: ', error)
