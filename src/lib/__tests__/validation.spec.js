@@ -1,6 +1,5 @@
 import { validateTransaction } from '../validation'
 
-
 describe('validateTransaction', () => {
   test('is a function', () => {
     expect(typeof validateTransaction).toBe('function')
@@ -8,6 +7,18 @@ describe('validateTransaction', () => {
 
   test('returns an error when param passed is empty', () => {
     expect(validateTransaction({})).not.toBe({})
+  })
+
+  test('returns an error when date passed is not a timestamp', () => {
+    expect(validateTransaction({
+      date: 123
+    })).not.toHaveProperty('date')
+  })
+
+  test('returns an error when date passed is not a timestamp', () => {
+    expect(validateTransaction({
+      date: '11/02/2017'
+    })).toHaveProperty('date')
   })
 
   test('does not return an inflow error when inflow is a number', () => {

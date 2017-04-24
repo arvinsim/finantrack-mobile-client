@@ -1,10 +1,10 @@
-import { isNumber } from 'lodash/core'
+import { isNumber, isInteger } from 'lodash/core'
 
 export const validateTransaction = values => {
   const errors = {}
 
-  // TODO: Date should be a in ISO format
-  if (true) {
+  // Date should be in timestamp format
+  if (!isInteger(values.date)) {
     errors.date = "Please enter a valid date"
   }
 
