@@ -1,7 +1,8 @@
 import styles from './styles.js'
 
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import PropTypes from 'prop-types'
+import { View, Text } from 'react-native'
 import { ListItem } from 'react-native-elements'
 
 import TransactionListItemOptionsContainer from '../../containers/TransactionListItemOptionsContainer'
@@ -14,7 +15,7 @@ class TransactionListItem extends Component {
     }
   }
 
-  _toggleShowOptions () {
+  _toggleShowOptions() {
     if (this.state.showOptions) {
       this.setState({
         showOptions: false
@@ -26,19 +27,38 @@ class TransactionListItem extends Component {
     }
   }
 
+  renderTitle(title) {
+    return <Text style={styles.title}>{title}</Text>
+  }
+
+  renderSubtitle(date, inflow, outflow) {
+    const dateText = date ? <Text style={styles.date}>{date}</Text> : undefined
+    const inflowText = inflow ? <Text style={styles.inflow}>{inflow}</Text> : undefined
+    const outflowText = outflow ? <Text style={styles.outflow}>{outflow}</Text> : undefined
+
+    return (
+      <View style={styles.subtitle}>
+        {dateText}
+        {inflowText}
+        {outflowText}
+      </View>
+    )
+  }
+
   render() {
     const { item } = this.props
-    const { title, description } = item
+    const { title, date, inflow, outflow } = item
 
     return (
       <View>
         <ListItem
-          title={title}
-          subtitle={description}
-          onPress={this._toggleShowOptions.bind(this)}          
+          title={this.renderTitle(title)}
+          subtitle={this.renderSubtitle(date, inflow, outflow)}
+          onPress={this._toggleShowOptions.bind(this)}
+          hideChevron
         />
-        { this.state.showOptions && 
-        <TransactionListItemOptionsContainer item={item} />
+        {this.state.showOptions &&
+          <TransactionListItemOptionsContainer item={item} />
         }
       </View>
     )
@@ -46,7 +66,12 @@ class TransactionListItem extends Component {
 }
 
 TransactionListItem.propTypes = {
-  title: React.PropTypes.string
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    inflow: PropTypes.string.isRequired,
+    outflow: PropTypes.string.isRequired
+  }).isRequired
 }
 
 export default TransactionListItem

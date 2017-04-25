@@ -1,6 +1,7 @@
 import styles from './styles.js'
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   View,
   ScrollView,
@@ -14,14 +15,8 @@ import {
 import TransactionListItem from '../TransactionListItem'
 
 class TransactionList extends Component {
-  _renderListItem (item) {
-    return (
-      <Text>{item.transaction}</Text>
-    )
-  }
-
   render () {
-    const { transactions, handleEditTransaction, handleDeleteTransaction } = this.props
+    const { transactions } = this.props
 
     return (
       <View>
@@ -45,10 +40,12 @@ class TransactionList extends Component {
 }
 
 TransactionList.propTypes = {
-  transactions: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      inflow: PropTypes.string.isRequired,
+      outflow: PropTypes.string.isRequired
     }).isRequired
   )
 }

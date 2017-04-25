@@ -51,11 +51,11 @@ export const getTransactionsFromFirebase = () => {
   return transactionsRef.once('value').then((snap) => {
     let transactions = []
     snap.forEach((transaction) => {
-      const { title, description, inflow, outflow } = transaction.val()
+      const { title, date, inflow, outflow } = transaction.val()
 
       transactions.push({
         title: title,
-        description: description,
+        date: date,
         inflow: inflow,
         outflow: outflow,
         _key: transaction.key
