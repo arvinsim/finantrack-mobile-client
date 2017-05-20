@@ -57,3 +57,6 @@ fastlane/screenshots
 
 # Environment file 
 .env
+
+# Yarn
+yarn.lock
