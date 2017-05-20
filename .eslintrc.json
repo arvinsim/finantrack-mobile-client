@@ -1,27 +1,13 @@
 {
     "env": {
-        "browser": true,
         "commonjs": true,
         "es6": true,
         "node": true
     },
-    "rules": {
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
-        "no-unreachable": "warn",
-        "no-unused-vars": "warn",
-        "constructor-super": "warn",
-        "valid-typeof": "warn",
-        "indent": ["error", 2],
-
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
-        "react-native/no-unused-styles": 2,
-        "react-native/split-platform-components": 2,
-        "react-native/no-inline-styles": 2,
-        "react-native/no-color-literals": 2
-    },
+    "extends": [
+      "standard",
+      "standard-react"
+    ],
     "plugins": [
       "react",
       "react-native"
