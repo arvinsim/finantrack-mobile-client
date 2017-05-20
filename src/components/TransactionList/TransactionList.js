@@ -3,7 +3,6 @@ import styles from './styles.js'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {View, FlatList} from 'react-native'
-// import {List} from 'react-native-elements'
 
 import TransactionListItem from '../TransactionListItem'
 

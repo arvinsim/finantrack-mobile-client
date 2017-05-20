@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import {Button, Grid, Row} from 'react-native-elements'
+import {Button, Grid, Row, Col} from 'react-native-elements'
 
 import TransactionListContainer from '../../containers/TransactionListContainer'
 import TransactionListSearchBar from '../../components/TransactionListSearchBar'
@@ -17,21 +17,21 @@ class HomeScreen extends Component {
 
     return (
       <Grid>
-        <Row size={8}>
-          <Button
-            onPress={() => navigate('AddTransaction')}
-            title="Add New Transaction"
-            backgroundColor={colors.primary}
-          />
-        </Row>
-        <Row size={8}>
-          <View>
+        <Row size={10}>
+          <Col size={60}>
+            <Button
+              onPress={() => navigate('AddTransaction')}
+              title="Add New Transaction"
+              backgroundColor={colors.primary}
+            />
+          </Col>
+          <Col size={40}>
             <TransactionListSearchBar
               placeholder='Search Transactions...'
             />
-          </View>
+          </Col>
         </Row>
-        <Row size={84}>
+        <Row size={90}>
           <TransactionListContainer />
         </Row>
       </Grid>
