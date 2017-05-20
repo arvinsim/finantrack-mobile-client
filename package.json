@@ -37,6 +37,7 @@
     "jest": "19.0.2",
     "react-devtools": "^2.1.5",
     "react-test-renderer": "~15.4.1"
+    "react-native-debug-stylesheet": "^0.1.1",
   },
   "jest": {
     "preset": "react-native",
