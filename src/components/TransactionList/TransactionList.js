@@ -1,39 +1,30 @@
 import styles from './styles.js'
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {
-  View,
-  ScrollView,
-  Text
-} from 'react-native'
-import {
-  List,
-  ListItem
-} from 'react-native-elements'
+import {View, FlatList} from 'react-native'
+// import {List} from 'react-native-elements'
 
 import TransactionListItem from '../TransactionListItem'
 
 class TransactionList extends Component {
-  render () {
-    const { transactions } = this.props
+  _renderListView(row) {
+    return (<TransactionListItem key={row.index} item={row.item}/>)
+  }
 
+  _keyExtractor(item, index) {
+    return item._key
+  }
+
+  render() {
+    const {transactions} = this.props
     return (
-      <View>
-        <View>
-          <List>
-            <ScrollView>
-            {
-              transactions.map((item, i) => (
-                <TransactionListItem
-                  key={i}
-                  item={item}
-                />
-              ))
-            }
-            </ScrollView>
-          </List>
-        </View>
+      <View style={styles.container}>
+        <FlatList
+          data={transactions}
+          renderItem={this._renderListView}
+          keyExtractor={this._keyExtractor}
+        />
       </View>
     )
   }
@@ -46,8 +37,8 @@ TransactionList.propTypes = {
       date: PropTypes.string.isRequired,
       inflow: PropTypes.string.isRequired,
       outflow: PropTypes.string.isRequired
-    }).isRequired
-  )
+    })
+  ).isRequired
 }
 
 export default TransactionList

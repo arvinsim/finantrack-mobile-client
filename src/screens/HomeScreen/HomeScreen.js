@@ -1,10 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { 
-  View,
-  Text 
-} from 'react-native'
-import { Button, } from 'react-native-elements'
+import React, {Component} from 'react'
+import {View} from 'react-native'
+import {Button, Grid, Row} from 'react-native-elements'
 
 import TransactionListContainer from '../../containers/TransactionListContainer'
 import TransactionListSearchBar from '../../components/TransactionListSearchBar'
@@ -17,22 +13,28 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { transactions, navigation: { navigate } } = this.props
+    const {transactions, navigation: {navigate}} = this.props
 
     return (
-      <View>
-        <Button
-          onPress={() => navigate('AddTransaction')}
-          title="Add New Transaction"
-          backgroundColor={colors.primary} 
-        />
-        <View>
-          <TransactionListSearchBar 
-            placeholder='Search Transactions...' 
+      <Grid>
+        <Row size={8}>
+          <Button
+            onPress={() => navigate('AddTransaction')}
+            title="Add New Transaction"
+            backgroundColor={colors.primary}
           />
-        </View>
-        <TransactionListContainer />
-      </View>
+        </Row>
+        <Row size={8}>
+          <View>
+            <TransactionListSearchBar
+              placeholder='Search Transactions...'
+            />
+          </View>
+        </Row>
+        <Row size={84}>
+          <TransactionListContainer />
+        </Row>
+      </Grid>
     )
   }
 }
