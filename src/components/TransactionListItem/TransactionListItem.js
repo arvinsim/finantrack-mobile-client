@@ -58,7 +58,7 @@ class TransactionListItem extends Component {
           hideChevron
         />
         {this.state.showOptions &&
-          <TransactionListItemOptionsContainer item={item} />
+          <TransactionListItemOptionsContainer item={item} onButtonPress={this._toggleShowOptions.bind(this)} />
         }
       </View>
     )

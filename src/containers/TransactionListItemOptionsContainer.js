@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { item } = ownProps
   return {
     handleEditTransaction: () => {
+      // Close the List Item Options Container
+      ownProps.onButtonPress()
+
       dispatch(NavigationActions.navigate({
         routeName: 'UpdateTransaction',
         params: {
@@ -26,6 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }))
     },
     handleDeleteTransaction: () => {
+      // Close the List Item Options Container
+      ownProps.onButtonPress()
       dispatch(deleteTransaction(item._key))
     }
   }
