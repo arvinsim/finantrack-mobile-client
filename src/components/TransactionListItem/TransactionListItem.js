@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, Text } from 'react-native'
 import { ListItem } from 'react-native-elements'
+import moment from 'moment'
 
 import TransactionListItemOptionsContainer from '../../containers/TransactionListItemOptionsContainer'
 
@@ -32,7 +33,7 @@ class TransactionListItem extends Component {
   }
 
   renderSubtitle(date, inflow, outflow) {
-    const dateText = date ? <Text style={styles.date}>{date}</Text> : undefined
+    const dateText = date ? <Text style={styles.date}>{moment(date).format('MM-DD-YYYY')}</Text> : undefined
     const inflowText = inflow ? <Text style={styles.inflow}>{inflow}</Text> : undefined
     const outflowText = outflow ? <Text style={styles.outflow}>{outflow}</Text> : undefined
 
