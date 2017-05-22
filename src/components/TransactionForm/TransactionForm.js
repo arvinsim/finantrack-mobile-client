@@ -17,18 +17,40 @@ const renderInputField = ({ input: { onChange, ...restInput }, label, meta: { to
   </View>
 )
 
-const renderDateField = ({ input: { onChange, ...restInput }, label, meta: { touched, error }, ...custom }) => (
-  <View>
-    <FormLabel>{label}</FormLabel>
-    <FormInput onChangeText={onChange} {...restInput} />
-    {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
-  </View>
-)
+const renderDateField = ({ input: { onChange, value, ...restInput }, label, meta: { touched, error }, ...custom }) => {
+  return (
+    <View>
+      <FormLabel>{label}</FormLabel>
+      <DatePicker
+        style={{ width: 300 }}
+        date={value}
+        mode='date'
+        placeholder="Select Date"
+        format="YYYY-MM-DD"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 20,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 56
+          }
+        }}
+        onDateChange={onChange}
+      />
+      {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
+    </View>
+  )
+}
 
 const renderMoneyField = ({ input: { onChange, ...restInput }, label, meta: { touched, error }, ...custom }) => (
   <View>
     <FormLabel>{label}</FormLabel>
-    <FormInput keyboardType="numeric" onChangeText={onChange} {...restInput}  />
+    <FormInput keyboardType="numeric" onChangeText={onChange} {...restInput} />
     {touched && (error && <FormValidationMessage>{error}</FormValidationMessage>)}
   </View>
 )
@@ -36,7 +58,7 @@ const renderMoneyField = ({ input: { onChange, ...restInput }, label, meta: { to
 class TransactionForm extends Component {
   render() {
     const { buttonTitle, handleSubmit, handleSubmitHandler, submitting } = this.props
-    const title = submitting ? 'processing' : buttonTitle 
+    const title = submitting ? 'processing' : buttonTitle
 
     return (
       <View>

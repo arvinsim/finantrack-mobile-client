@@ -22,7 +22,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         params: {
           _key: item._key,
           title: item.title,
-          description: item.description,
           inflow: item.inflow,
           outflow: item.outflow
         }

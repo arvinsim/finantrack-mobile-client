@@ -13,7 +13,7 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const {transactions, navigation: {navigate}} = this.props
+    const {navigation: {navigate}} = this.props
 
     return (
       <Grid>
